@@ -35,7 +35,8 @@ module.exports = async () => {
     },
     plugins: [
       new EnvironmentPlugin([
-        'RELEASE'
+        'RELEASE',
+        'SHARED_SECRET'
       ])
     ]
   }
