@@ -10,9 +10,11 @@ addEventListener('fetch', event => {
 })
 
 async function main (event) {
-  const response = fetch(event.request)
+  const response = await fetch(event.request)
   const headers = new Headers(response.headers)
-  if (event.request.headers.get('user-agent').includes(process.env.SHARED_SECRET)) {
+
+  const userAgent = String(event.request.headers.get('user-agent'))
+  if (userAgent.includes(process.env.SHARED_SECRET)) {
     headers.set('meta', JSON.stringify({
       release: process.env.RELEASE
     }))
