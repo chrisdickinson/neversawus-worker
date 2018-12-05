@@ -20,6 +20,8 @@ async function main (event) {
     }))
   }
 
+  headers.set('x-clacks-overhead', 'GNU Terry Pratchett')
+
   return new Response(response.body, {
     statusText: response.statusText,
     status: response.status,
