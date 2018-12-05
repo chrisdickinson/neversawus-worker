@@ -32,7 +32,9 @@
   "standard": {
     "globals": [
       "addEventListener",
-      "Response"
+      "Response",
+      "fetch",
+      "Headers"
     ]
   },
   "dependencies": {}
