@@ -10,7 +10,5 @@ addEventListener('fetch', event => {
 })
 
 async function main (event) {
-  return new Response('hello world', {
-    status: 200
-  })
+  return fetch(event.request)
 }
