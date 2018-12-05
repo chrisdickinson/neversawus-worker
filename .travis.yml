@@ -2,7 +2,7 @@ language: node_js
 before_install:
   - pip install --user awscli
   - export PATH=$PATH:$HOME/.local/bin
-node:
-  - 10
+node_js:
+  - "10"
 script:
   - bash deploy.sh
