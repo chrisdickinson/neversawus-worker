@@ -1,6 +1,6 @@
 'use strict'
 
-const hbs = require('handlebars')
+const mustache = require('mustache')
 
 addEventListener('fetch', event => {
   event.respondWith(main(event).then(
@@ -23,9 +23,9 @@ async function getRenderer (framing) {
     }
   }
 
-  const tpl = hbs.compile(await response.text())
+  const tpl = await response.text()
   return (context, body) => {
-    return tpl({ body, ...context })
+    return mustache.render(tpl, { body, ...context })
   }
 }
 
