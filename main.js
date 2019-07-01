@@ -48,7 +48,7 @@ async function main (event) {
   }
 
   const headers = new Headers([
-    [...response.headers].filter(([key]) => !key.startsWith(META_PREFIX)).reduce(acc, [key, ...rest] => {
+    [...response.headers].filter(([key]) => !key.startsWith(META_PREFIX)).reduce((acc, [key, ...rest]) => {
       for (const value of rest) {
         acc.push([key, value])
       }
