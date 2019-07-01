@@ -13,13 +13,13 @@ addEventListener('fetch', event => {
 
 const META_PREFIX = 'x-amz-meta-'
 
-async function getRenderer (framing) {
-  const response = await fetch(`/_framing/${framing}`)
+async function getRenderer (framing, url) {
+  const response = await fetch(`https://${url.host}/_framing/${framing}`)
   if (!response.ok) {
     if (framing === 'default.html') {
       return (context, body) => body + '<h1>(framing not found)</h1>'
     } else {
-      return getRenderer('default.html')
+      return getRenderer('default.html', url)
     }
   }
 
@@ -42,7 +42,7 @@ async function main (event) {
     }, {})
 
     if (context.framing) {
-      const render = await getRenderer(context.framing)
+      const render = await getRenderer(context.framing, new URL(event.request.url))
       body = render(context, await response.text())
     }
   }
