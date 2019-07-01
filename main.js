@@ -14,7 +14,7 @@ addEventListener('fetch', event => {
 const META_PREFIX = 'x-amz-meta-'
 
 async function getRenderer (framing) {
-  const response = await fetch(`_framing/${framing}`)
+  const response = await fetch(`/_framing/${framing}`)
   if (!response.ok) {
     if (framing === 'default.html') {
       return (context, body) => body + '<h1>(framing not found)</h1>'
