@@ -47,14 +47,12 @@ async function main (event) {
     }
   }
 
-  const headers = new Headers([
-    [...response.headers].filter(([key]) => !key.startsWith(META_PREFIX)).reduce((acc, [key, ...rest]) => {
-      for (const value of rest) {
-        acc.push([key, value])
-      }
-      return acc
-    }, [])]
-  )
+  const headers = new Headers(response.headers)
+  for (const [key] of [...response.headers]) {
+    if (key.startsWith(META_PREFIX)) {
+      headers.delete(key)
+    }
+  }
 
   headers.set('x-clacks-overhead', 'GNU Terry Pratchett')
   headers.set('meta', JSON.stringify({
