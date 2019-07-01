@@ -48,7 +48,7 @@ async function main (event) {
   }
 
   const headers = new Headers([
-    ...response.headers.filter(([key]) => !key.startsWith(META_PREFIX))]
+    [...response.headers].filter(([key]) => !key.startsWith(META_PREFIX))]
   )
 
   headers.set('x-clacks-overhead', 'GNU Terry Pratchett')
